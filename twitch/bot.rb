@@ -3,11 +3,14 @@ require "socket"
 TWITCH_HOST = "irc.twitch.tv"
 TWITCH_PORT = 6667
 
+file = File.read('secrets.json')
+SECRETS = JSON.parse(file)
+
 class TwitchBot
     
   def initialize
     @nickname = "finchbot420"
-    @password = "oauth:ea79u2lkmxidkju6j0k4wpw8x42ugb"
+    @password = SECRETS["token"]
     @channel = "the_last_real_gamer"
     @socket = TCPSocket.open(TWITCH_HOST, TWITCH_PORT)
 
